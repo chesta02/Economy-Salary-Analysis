@@ -1,45 +1,71 @@
 Employee Salary Analysis Using R
 
-Project Overview
+Overview
 
-Employee Salary Analysis is a data analysis project developed using R to explore employee salary patterns, compare salaries across departments, and investigate the relationship between work experience and salary.
+Employee Salary Analysis is a data analysis project developed using R to explore employee salary patterns, department-wise salary differences, and the relationship between professional experience and salary.
 
-The project uses a Kaggle employee dataset and demonstrates data importing, cleaning, descriptive statistics, and visualization.
+The project demonstrates data import, data cleaning, descriptive statistics, data visualization, and correlation analysis using R programming.
 
 Objectives
 
-* Import and inspect employee data.
+* Import and inspect an employee dataset.
 * Identify missing values and duplicate records.
-* Prepare a cleaned dataset for analysis.
+* Clean the dataset for analysis.
 * Calculate descriptive salary statistics.
 * Compare average salaries across departments.
-* Examine salary patterns across experience levels.
-* Create visualizations to communicate findings.
-
-Technologies Used
-
-* R
-* RStudio-compatible R scripts executed through VS Code
-* readr
-* dplyr
-* ggplot2
-* Git and GitHub
+* Analyze salary patterns across experience levels.
+* Visualize salary distributions using statistical plots.
+* Examine the linear correlation between experience and salary.
 
 Dataset
 
-The dataset contains 1,000 employee records and 12 columns, including age, gender, department, salary, joining date, performance score, experience, employment status, location, and work session.
+Dataset file: Data/Employe_Performance_dataset.csv
 
-Note: Refer to the original Kaggle dataset page for its source and licensing details.
+The project uses an employee performance dataset containing fields such as:
+
+* Employee ID
+* Name
+* Age
+* Gender
+* Department
+* Salary
+* Joining Date
+* Performance Score
+* Experience
+* Employment Status
+* Location
+* Session
+
+The dataset contains 1,000 records and 12 columns, based on the initial dataset inspection.
+
+Dataset source: Kaggle.
+
+Replace this source description with the exact Kaggle dataset title and URL before publishing if you have them available.
+
+Technologies Used
+
+* Language: R
+* IDE: Visual Studio Code
+* Data Import: readr
+* Data Manipulation: dplyr
+* Data Visualization: ggplot2
+* Version Control: Git and GitHub
 
 Project Structure
 
-project/
+Economy-Salary-Analysis/
 ├── Data/
 │   └── Employe_Performance_dataset.csv
 ├── outputs/
 │   ├── plots/
-│   ├── employee_salary_cleaned.csv
+│   │   ├── department_salary.png
+│   │   ├── experience_salary.png
+│   │   ├── experience_salary_correlation.png
+│   │   ├── salary_boxplot.png
+│   │   └── salary_distribution.png
+│   ├── correlation_summary.csv
 │   ├── department_salary_summary.csv
+│   ├── employee_salary_cleaned.csv
 │   └── experience_salary_summary.csv
 ├── reports/
 │   └── project_report.md
@@ -49,82 +75,127 @@ project/
 │   ├── 01_data_import.R
 │   ├── 02_data_cleaning.R
 │   ├── 03_descriptive_analysis.R
-│   └── 04_visualization.R
-├── main.R
+│   ├── 04_visualization.R
+│   └── 05_correlation_analysis.R
 ├── .gitignore
+├── main.R
 └── README.md
 
-Analysis Performed
+Installation and Setup
 
-1. Data Import
+1. Install R
 
-* Imported the CSV dataset.
-* Examined column names, dimensions, structure, and summary information.
+Download and install R from the official R Project website:
 
-2. Data Cleaning
+https://www.r-project.org/
 
-* Checked missing values.
-* Checked for duplicate rows.
-* Removed duplicate rows and records with missing or nonpositive salaries.
-* Saved the cleaned dataset for further analysis.
+2. Install Required Packages
 
-3. Descriptive Analysis
+Open the VS Code terminal and run:
 
-* Calculated average, median, minimum, and maximum salaries.
-* Calculated salary standard deviation.
-* Compared salary statistics across departments.
-* Examined average salaries by experience level.
+R -e 'install.packages(c("readr", "dplyr", "ggplot2"), repos="https://cloud.r-project.org")'
 
-4. Data Visualization
+3. Run the Project
 
-Generated the following charts:
+Ensure your terminal is in the project root directory, where main.R is located.
 
-* Salary distribution histogram
-* Department-wise average salary bar chart
-* Salary distribution boxplot by department
-* Experience versus salary scatter plot with a trend line
-
-Preliminary Findings
-
-* The dataset contains 1,000 employee records.
-* The average salary is approximately 5,917.
-* The median salary is 5,889.
-* HR has the highest average salary among the three departments.
-* Sales has the lowest average salary among the three departments.
-* The Performance Score column contains 498 missing values.
-
-These findings are descriptive and do not establish that department or experience causes salary differences.
-
-Installation
-
-Install R from the official R Project website.
-
-Install the required packages by running:
-
-Rscript requirements/requirements.R
-
-How to Run
-
-Open the project folder in VS Code and execute:
+Run:
 
 Rscript main.R
 
-The program imports the dataset, performs cleaning, generates descriptive summaries, and saves visualizations.
+The script executes the following stages:
 
-Outputs
+1. Dataset import
+2. Data cleaning
+3. Descriptive analysis
+4. Data visualization
+5. Correlation analysis
 
-* Cleaned dataset: outputs/employee_salary_cleaned.csv
-* Department summary: outputs/department_salary_summary.csv
-* Experience summary: outputs/experience_salary_summary.csv
-* Visualizations: outputs/plots/
+Data Cleaning
+
+The cleaning script:
+
+* Checks missing values in each column.
+* Identifies duplicate records.
+* Removes exact duplicate rows.
+* Removes records with missing or non-positive salary values.
+* Saves the cleaned dataset to outputs/employee_salary_cleaned.csv.
+
+Missing performance scores are retained during this cleaning stage.
+
+Analysis Performed
+
+1. Descriptive Statistics
+
+The project calculates:
+
+* Total employee count
+* Mean salary
+* Median salary
+* Minimum salary
+* Maximum salary
+* Standard deviation
+
+2. Department-Wise Salary Analysis
+
+Employees are grouped by department to compare employee counts and salary statistics.
+
+3. Experience-Wise Salary Analysis
+
+Average salary is calculated for each experience value to explore salary patterns across experience levels.
+
+4. Salary Visualization
+
+The project generates the following plots:
+
+Visualization	Purpose
+Salary Distribution	Examines the distribution of employee salaries
+Average Salary by Department	Compares average salaries across departments
+Salary Boxplot	Compares salary distributions and potential outliers across departments
+Experience vs Salary	Examines the relationship between experience and salary
+Experience-Salary Correlation	Visualizes the relationship with a fitted linear trend
+
+5. Correlation Analysis
+
+The correlation script calculates the Pearson correlation coefficient between experience and salary.
+
+The initial analysis produced a correlation of approximately 0.004, indicating almost no linear relationship between these two variables in the analyzed dataset.
+
+This result describes linear association only. It does not establish causation or rule out nonlinear relationships.
+
+Output Files
+
+The project generates:
+
+* A cleaned employee dataset.
+* Department-wise salary summary.
+* Experience-wise salary summary.
+* Correlation summary.
+* Five visualization images.
+
+Generated outputs are stored in the outputs/ directory.
+
+Key Learning Outcomes
+
+Through this project, I practiced:
+
+* Importing CSV data into R.
+* Inspecting dataset structure and data types.
+* Handling missing values and duplicate records.
+* Using dplyr for data manipulation.
+* Calculating descriptive statistics.
+* Creating visualizations using ggplot2.
+* Performing correlation analysis.
+* Organizing an R project into reusable scripts.
+* Using Git and GitHub for version control.
 
 Future Improvements
 
-* Investigate and handle missing performance scores.
-* Analyze salary differences by gender and employment status.
-* Study salary trends by joining date.
-* Add correlation analysis between salary and experience.
+* Add salary analysis by department, age, and employment status.
+* Investigate outliers and missing values in greater detail.
+* Explore statistical significance and nonlinear relationships.
 * Build an interactive dashboard using Shiny.
+* Add automated data validation and reporting.
 
 Author
 
