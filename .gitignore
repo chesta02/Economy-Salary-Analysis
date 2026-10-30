@@ -1,0 +1,21 @@
+macOS system files
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+R temporary and session files
+
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+VS Code settings
+
+.vscode/
+
+Temporary files
+
+*.tmp
+*.log
